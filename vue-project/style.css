@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .styleCurrencyBtn{
+        @apply hover:bg-white py-2 text-lg hover:border-r-2 hover:border-l-2 hover:border-black hover:font-medium hover:italic;        
+    }
+}
