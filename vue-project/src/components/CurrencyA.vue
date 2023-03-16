@@ -2,22 +2,28 @@
 import { ref } from 'vue'
 import CurrencyStore from '../store/CurrecncyStore'
 import { currencies } from '../currency';
+import { storeToRefs } from 'pinia';
 
+const userInput = ref();
 const displayCurrencyList = ref(false);
 const displayCurrencyName = ref("INR");
 
+const {currencyAmountA} = storeToRefs(CurrencyStore());
 const {updateCurrencyA} = CurrencyStore();
 
 function onClickHandler(code) {
+    console.log(userInput._value.value)
     console.log(code);
+    const inputAmount = userInput._value.value;
     displayCurrencyName.value = code;
-    updateCurrencyA(code);
+    displayCurrencyList.value = false;
+    updateCurrencyA(inputAmount ,code);
 }
 
 </script>
 <template>
     <section class="p-5">
-        <input type="tex" placeholder="qweqwe" class="w-full text-2xl p-2 mb-3" />
+        <input type="tex" placeholder="qweqwe" class="w-full text-2xl p-2 mb-3 pl-10" :value="currencyAmountA" ref="userInput"/>
         <div @mouseenter="displayCurrencyList = true" @mouseleave="displayCurrencyList = false"
             class="w-[400px] transition-all relative">
             <div class=" bg-[#333] p-5 text-white text-center cursor-pointer">{{ displayCurrencyName }}</div>
