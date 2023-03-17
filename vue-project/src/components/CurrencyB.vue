@@ -4,23 +4,28 @@ import CurrencyStore from '../store/CurrecncyStore'
 import { currencies } from '../currency';
 import { storeToRefs } from 'pinia';
 
+const userInput = ref();
 const displayCurrencyList = ref(false);
 const displayCurrencyName = ref("USD");
 
-const {updateCurrencyB} = CurrencyStore();
 const {currencyAmountB} = storeToRefs(CurrencyStore());
+const {updateCurrencyB, updateCodeB} = CurrencyStore();
 
 function onClickHandler(code) {
-    console.log(code);
     displayCurrencyName.value = code;
     displayCurrencyList.value = false;
-    updateCurrencyB(code);
+    updateCodeB(code);
+}
+
+function onChangeHandler(){
+    const inputAmount = userInput._value.value;
+    updateCurrencyB(inputAmount);
 }
 
 </script>
 <template>
     <section class="p-5">
-        <input type="tex" placeholder="qweqwe" class="w-full text-2xl p-2 mb-3 pl-10" :value="currencyAmountB"/>
+        <input type="tex" placeholder="qweqwe" class="w-full text-2xl p-2 mb-3 pl-10" ref="userInput" @change="onChangeHandler" :value="currencyAmountB" />
         <div @mouseenter="displayCurrencyList = true" @mouseleave="displayCurrencyList = false"
             class="w-[400px] transition-all relative">
             <div class=" bg-[#333] p-5 text-white text-center cursor-pointer">{{ displayCurrencyName }}</div>

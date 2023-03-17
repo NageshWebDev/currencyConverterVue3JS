@@ -9,21 +9,23 @@ const displayCurrencyList = ref(false);
 const displayCurrencyName = ref("INR");
 
 const {currencyAmountA} = storeToRefs(CurrencyStore());
-const {updateCurrencyA} = CurrencyStore();
+const {updateCurrencyA, updateCodeA} = CurrencyStore();
 
 function onClickHandler(code) {
-    console.log(userInput._value.value)
-    console.log(code);
-    const inputAmount = userInput._value.value;
     displayCurrencyName.value = code;
     displayCurrencyList.value = false;
-    updateCurrencyA(inputAmount ,code);
+    updateCodeA(code);
+}
+
+function onChangeHandler(){
+    const inputAmount = userInput._value.value;
+    updateCurrencyA(inputAmount);
 }
 
 </script>
 <template>
     <section class="p-5">
-        <input type="tex" placeholder="qweqwe" class="w-full text-2xl p-2 mb-3 pl-10" :value="currencyAmountA" ref="userInput"/>
+        <input type="tex" placeholder="qweqwe" class="w-full text-2xl p-2 mb-3 pl-10" ref="userInput" @change="onChangeHandler" :value="currencyAmountA"/>
         <div @mouseenter="displayCurrencyList = true" @mouseleave="displayCurrencyList = false"
             class="w-[400px] transition-all relative">
             <div class=" bg-[#333] p-5 text-white text-center cursor-pointer">{{ displayCurrencyName }}</div>
