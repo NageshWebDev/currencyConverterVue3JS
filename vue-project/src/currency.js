@@ -1,42 +1,62 @@
 export const currencies = [
     {
         countryCode: 'KWD',
-        countryName: 'Kuwaiti Dinar'
+        countryName: 'Kuwaiti',
+        countryCurrency: 'Kuwaiti Dinar',
+        currencyIcon: 'د.ك'
     },
     {
         countryCode: 'BHD',
-        countryName: 'Bahraini Dinar'
+        countryName: 'Bahraini',
+        countryCurrency: 'Bahraini Dinar',
+        currencyIcon: '.د.ب'
     },
     {
         countryCode: 'OMR',
-        countryName: 'Omani Rial'
+        countryName: 'Omani',
+        countryCurrency: 'Omani Rial',
+        currencyIcon: '﷼'
     },
     {
         countryCode: 'GBP',
-        countryName: 'British Pound Sterling'
+        countryName: 'British',
+        countryCurrency: 'British Pound Sterling',
+        currencyIcon: '£'
     },
     {
         countryCode: 'EUR',
-        countryName: 'European Euro'
+        countryName: 'European',
+        countryCurrency: 'European Euro',
+        currencyIcon: '€'
     },
     {
         countryCode: 'USD',
-        countryName: 'US Dollar'
+        countryName: 'US',
+        countryCurrency: 'US Dollar',
+        currencyIcon: '$'
     },
     {
         countryCode: 'BND',
-        countryName: 'Brunei Dollar'
+        countryName: 'Brunei',
+        countryCurrency: 'Brunei Dollar',
+        currencyIcon: 'B$'
     },
     {
         countryCode: 'NZD',
-        countryName: 'New Zealand Dollar'
+        countryName: 'New Zealand',
+        countryCurrency: 'New Zealand Dollar',
+        currencyIcon: '$'
     },
     {
         countryCode: 'AWG',
-        countryName: 'Aruban Florin'
+        countryName: 'Aruban',
+        countryCurrency: 'Aruban Florin',
+        currencyIcon: 'ƒ'
     },
     {
         countryCode: 'INR',
-        countryName: 'Indian Rupee'
+        countryName: 'Indian',
+        countryCurrency: 'Indian Rupee',
+        currencyIcon: '₹'
     }
 ]

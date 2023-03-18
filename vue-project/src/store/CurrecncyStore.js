@@ -3,80 +3,60 @@ import { defineStore } from "pinia";
 import { reference } from "../reference";
 
 export default defineStore("CS", () => {
-  console.log(reference);
   const currencyAmountA = ref(1);
   const currencyAmountB = ref(1);
 
   const currencyCodeA = ref("USD");
   const currencyCodeB = ref("USD");
 
-  function computeMeA(
-    currencyAmountA,
-    currencyAmountB,
-    currencyCodeA
-  ) {
-    const convertValue = reference.filter(
-      (curr) => curr.code === currencyCodeA
-    );
-    currencyAmountB.value = currencyAmountA.value * convertValue[0].wrtUSD;
-    return currencyAmountA.value;
+  const focusOnA = ref(false)
+  const focusOnB = ref(false)
+
+  function focusOnAActive() {
+    focusOnA.value = true;
+    focusOnB.value = false;
   }
 
-  function computeMeB(
-    currencyAmountA,
-    currencyAmountB,
-    currencyCodeB
-  ) {
-    const convertValue = reference.filter(
-      (curr) => curr.code === currencyCodeB
-    );
-    currencyAmountB.value = currencyAmountA.value / convertValue[0].wrtUSD;
-    return currencyAmountB.value;
-  }
-
-  function updateCurrencyA(newCurrencyAmountA) {
+  function updateCurrencyA(newCurrencyAmountA, updateWithoutFocus) {
     currencyAmountA.value = newCurrencyAmountA;
+    if (focusOnA.value || updateWithoutFocus) {
+      const AwrtUSD = reference.filter(
+        (curr) => curr.code === currencyCodeA.value
+      );
+      const BwrtUSD = reference.filter(
+        (curr) => curr.code === currencyCodeB.value
+      )
+      currencyAmountB.value = (AwrtUSD[0].wrtUSD / BwrtUSD[0].wrtUSD) * currencyAmountA.value;
+    }
     return currencyAmountA.value;
   }
 
   function updateCodeA(newCurrencyCodeA) {
-    console.log(
-      "🚀 ~ file: CurrecncyStore.js:57 ~ updateCodeA ~ newCurrencyCodeA:",
-      newCurrencyCodeA
-    );
-
-    const newConvertedCurrencyA = computeMeA(
-      currencyAmountA,
-      currencyAmountB,
-      newCurrencyCodeA,
-    );
-    console.log(
-      "🚀 ~ file: CurrecncyStore.js:65 ~ updateCodeA ~ newConvertedCurrencyA:",
-      newConvertedCurrencyA
-    );
-    currencyAmountA.value = newConvertedCurrencyA;
-    return currencyAmountA.value;
+    currencyCodeA.value = newCurrencyCodeA;
   }
 
-  function updateCurrencyB(newCurrencyAmountB) {
+  function focusOnBActive() {
+    focusOnA.value = false;
+    focusOnB.value = true;
+  }
 
+  function updateCurrencyB(newCurrencyAmountB, updateWithoutFocus) {
     currencyAmountB.value = newCurrencyAmountB;
+    if (focusOnB.value || updateWithoutFocus) {
+      const AwrtUSD = reference.filter(
+        (curr) => curr.code === currencyCodeA.value
+      );
+      const BwrtUSD = reference.filter(
+        (curr) => curr.code === currencyCodeB.value
+      )
+      currencyAmountA.value = (BwrtUSD[0].wrtUSD / AwrtUSD[0].wrtUSD) * currencyAmountB.value;
+    }
     return currencyAmountB.value;
   }
 
   function updateCodeB(newCurrencyCodeB) {
-
-
-    const newConvertedCurrencyB = computeMeB(
-      currencyAmountA,
-      currencyAmountB,
-      newCurrencyCodeB,
-    );
-    currencyAmountB.value = newConvertedCurrencyB;
-    return currencyAmountB.value;
+    currencyCodeB.value = newCurrencyCodeB;
   }
-
-
 
   return {
     updateCurrencyA,
@@ -84,6 +64,10 @@ export default defineStore("CS", () => {
     updateCurrencyB,
     updateCodeB,
     currencyAmountA,
+    currencyCodeA,
     currencyAmountB,
+    currencyCodeB,
+    focusOnAActive,
+    focusOnBActive
   };
 });
