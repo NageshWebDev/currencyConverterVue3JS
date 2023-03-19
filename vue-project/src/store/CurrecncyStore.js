@@ -26,7 +26,7 @@ export default defineStore("CS", () => {
       const BwrtUSD = reference.filter(
         (curr) => curr.code === currencyCodeB.value
       )
-      currencyAmountB.value = (AwrtUSD[0].wrtUSD / BwrtUSD[0].wrtUSD) * currencyAmountA.value;
+      currencyAmountB.value = ((AwrtUSD[0].wrtUSD / BwrtUSD[0].wrtUSD) * currencyAmountA.value).toFixed(4);
     }
     return currencyAmountA.value;
   }
@@ -49,7 +49,7 @@ export default defineStore("CS", () => {
       const BwrtUSD = reference.filter(
         (curr) => curr.code === currencyCodeB.value
       )
-      currencyAmountA.value = (BwrtUSD[0].wrtUSD / AwrtUSD[0].wrtUSD) * currencyAmountB.value;
+      currencyAmountA.value = ((BwrtUSD[0].wrtUSD / AwrtUSD[0].wrtUSD) * currencyAmountB.value).toFixed(4);
     }
     return currencyAmountB.value;
   }

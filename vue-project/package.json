@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "pinia": "^2.0.32",
+    "tailwind-scrollbar": "^3.0.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {

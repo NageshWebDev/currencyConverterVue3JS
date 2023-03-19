@@ -9,11 +9,11 @@
     }
 
     .styleCurrencyBtn{
-        @apply hover:bg-white py-2 px-4 text-lg hover:font-medium border-l-4 hover:border-black flex items-center justify-between hover:shadow-md;        
+        @apply hover:bg-white py-2 px-4 text-lg hover:font-medium flex items-center justify-between hover:shadow-md;        
     }
 
     .styleCurrencyList{
-        @apply flex flex-col bg-[lavender] text-black absolute w-full h-[300px] overflow-x-auto;
+        @apply flex flex-col bg-[lavender] text-black absolute w-full h-[300px] overflow-x-auto scrollbar scrollbar-thumb-purple-400 scrollbar-track-[#555] scrollbar-w-2 scrollbar-thumb-rounded-2xl border-4 border-[#333] rounded-b-xl;
     }
 
     .styleCurrencyIcon{

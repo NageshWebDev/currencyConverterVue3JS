@@ -14,7 +14,7 @@ const { updateCurrencyB, updateCodeB, focusOnBActive } = CurrencyStore();
 
 watch(currencyAmountB, () => {
     if (currencyAmountB.value) {
-        const onlyAmount = String(currencyAmountB.value).match(/[0-9]/g).join('')
+        const onlyAmount = String(currencyAmountB.value).match(/[^a-zA-Z]/g).join('')
         updateCurrencyB(+onlyAmount, false);
     } else currencyAmountA.value = 0
 })
